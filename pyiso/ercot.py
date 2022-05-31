@@ -150,15 +150,21 @@ class ERCOTClient(BaseClient):
         timestamp_str = timestamp_elt.strip('Last Updated: ')
         timestamp = self.utcify(timestamp_str)
 
+        #print("Timestamp:" + timestamp_str)
+
         # parse rest of page as html table
         df = pd.read_html(content, index_col=0)[0]
+        #print("Pandas Data Frame:"+df.head())
 
         # get other values
-        load_val = df.loc['Actual System Demand'][1]
-        wind_val = df.loc['Total Wind Output'][1]
+        load_val = float(df.loc['Actual System Demand'][1])
+        #print("load_val:"+str(load_val))
+        wind_val = float(df.loc['Total Wind Output'][1])
+        #print("wind_val:"+str(wind_val))
         tie_flow_labels = ['DC_E (East)', 'DC_L (Laredo VFT)', 'DC_N (North)',
                            'DC_R (Railroad)', 'DC_S (Eagle Pass)']
-        total_imports_val = sum([df.loc[label][1] for label in tie_flow_labels])
+        total_imports_val = sum([float(df.loc[label][1]) for label in tie_flow_labels])
+        #print("total_imports_val:"+str(total_imports_val))
 
         # use options to get labels
         if self.options['data'] == 'load':

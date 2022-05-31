@@ -1,0 +1,14 @@
+version: "3.3"  
+services:
+  pyiso:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: pyiso
+    ports:
+      - "9998:9998"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    # volumes:
+    #   - ./ercot.py:/home/ercot.py
+    entrypoint: /bin/bash #During Dev  

@@ -15,6 +15,7 @@ User group: https://groups.google.com/forum/#!forum/pyiso-users
 Upcoming Changes
 ----------------
 * Add changes here
+* Added docker-compose.yml and Dockerfile; Minor changes to requirements.txt
 
 Changelog
 ---------
